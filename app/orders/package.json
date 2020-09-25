@@ -1,0 +1,17 @@
+{
+  "name": "com.sap.c4p.pfm.project-request-list-report",
+  "version": "0.0.1",
+  "description": "",
+  "devDependencies": {
+    "@sap/grunt-sapui5-bestpractice-build": "1.4.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "@sap/approuter": "6.0.1",
+    "grunt": "^1.1.0"
+  },
+  "scripts": {
+    "start": "node node_modules/@sap/approuter/approuter.js",
+    "dev": "nodemon node_modules/@sap/approuter/approuter.js"
+  }
+}
