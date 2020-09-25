@@ -1,10 +1,9 @@
 ID: CAP_Orders
-_schema-version: "2.1"
+_schema-version: '2.1'
 parameters:
   deploy_mode: html5-repo
 version: 0.0.1
 modules:
-
   - name: cap-orders-approuter
     type: approuter.nodejs
     path: cap-orders-approuter
@@ -21,7 +20,7 @@ modules:
           forwardAuthToken: false
           name: CAP_Orders-srv
           url: '~{url}'
-
+      - name: portal_resources_CAP_Orders
   - name: orders
     type: html5
     path: app/orders
@@ -32,7 +31,6 @@ modules:
       supported-platforms: []
       build-result: dist
       builder: grunt
-
   - name: CAP_Orders_ui_deployer
     deployed-after:
       - orders
@@ -48,7 +46,6 @@ modules:
           artifacts:
             - './*'
           target-path: resources/orders
-
   - name: CAP_Orders-db
     type: hdb
     path: db
@@ -59,7 +56,6 @@ modules:
       - name: CAP_Orders-db-hdi-container
         properties:
           TARGET_CONTAINER: '~{hdi-container-name}'
-
   - name: CAP_Orders-srv
     deployed-after:
       - CAP_Orders-db
@@ -70,40 +66,54 @@ modules:
     provides:
       - name: srv_api
         properties:
-          url: ${default-url}
+          url: '${default-url}'
     requires:
       - name: CAP_Orders-db-hdi-container
         properties:
-          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
-            {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
       - name: CAP_Orders-uaa
-      
+  - name: flp-content
+    type: com.sap.application.portal.content
+    path: flp-content
+    requires:
+      - name: portal_resources_CAP_Orders
+        parameters:
+          service-key:
+            name: content-deploy-key
+            config:
+              content-endpoint: developer
+          content-target: true
+      - name: uaa_CAP_Orders
+      - name: CAP_Orders_html5_repo_host
+      - name: CAP_Orders_ui_deployer
 resources:
   - name: CAP_Orders_html5_repo_runtime
     parameters:
       service-plan: app-runtime
       service: html5-apps-repo
     type: org.cloudfoundry.managed-service
-
   - name: CAP_Orders_html5_repo_host
     parameters:
       service-plan: app-host
       service: html5-apps-repo
     type: org.cloudfoundry.managed-service
-
   - name: CAP_Orders-db-hdi-container
     type: com.sap.xs.hdi-container
     parameters:
       service: hanatrial
       service-plan: hdi-shared
     properties:
-      hdi-container-name: ${service-name}
-
+      hdi-container-name: '${service-name}'
   - name: CAP_Orders-uaa
     type: org.cloudfoundry.managed-service
     parameters:
       service-plan: application
       service: xsuaa
       config:
-        xsappname: CAP_Orders-${space}
+        xsappname: 'CAP_Orders-${space}'
         tenant-mode: dedicated
+  - name: portal_resources_CAP_Orders
+    parameters:
+      service-plan: standard
+      service: portal
+    type: org.cloudfoundry.managed-service
