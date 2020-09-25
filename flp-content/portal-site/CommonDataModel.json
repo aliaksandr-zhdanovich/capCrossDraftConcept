@@ -26,7 +26,11 @@
 				"i18n": "i18n/defaultGroupId.properties"
 			},
 			"payload": {
-				"viz": []
+				"viz": [{
+					"id": "cap.demo.orders-0-1601019408762",
+					"appId": "cap.demo.orders",
+					"vizId": "OrdersReport-Display"
+				}]
 			}
 		}],
 		"sites": [{
