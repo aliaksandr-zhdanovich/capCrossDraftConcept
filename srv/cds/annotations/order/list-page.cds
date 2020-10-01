@@ -6,14 +6,14 @@ annotate order.OrderService.Orders with @(
     UI: {
         LineItem: [
             { $Type: 'UI.DataField', Value: ID },
-            { $Type: 'UI.DataField', Value: name }
+//            { $Type: 'UI.DataField', Value: name }
         ],
 
         PresentationVariant: {
             Visualizations: ['@UI.LineItem'],
             SortOrder: [
                 {
-                    Property: 'name',
+                    Property: 'ID',
                     Ascending: true
                 }
             ]
@@ -27,8 +27,8 @@ annotate order.OrderService.Orders with @(
 {
     ID
     @title: 'Order ID';
-    name
-    @title: 'Order';
+//    name
+//   @title: 'Order';
 };
 
 

@@ -1,0 +1,216 @@
+#2.0#2020 09 25 07:58:05.715#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:42 UTC 2020] Updated app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 ({"environment_json"=>"[PRIVATE DATA HIDDEN]"}) (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:05.715#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:46 UTC 2020] Uploading app package for app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:56 UTC 2020] Cell 5c69d67d-51ba-455b-965a-8119d79cee72 stopping instance 8f3f2af4-9e0d-4604-46b7-ad67 (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:56 UTC 2020] Updated app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 ({"state"=>"STOPPED"}) (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:56 UTC 2020] { "written_at":"2020-09-25T07:57:56.715Z","written_ts":45061856639619,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.1.6","type":"log","logger":"org.apache.catalina.core.StandardService","thread":"Thread-6","level":"INFO","categories":[],"msg":"Stopping service [Catalina]" } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:56 UTC 2020] Creating build for app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Exit status 143 (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Cell 5c69d67d-51ba-455b-965a-8119d79cee72 destroying container for instance 8f3f2af4-9e0d-4604-46b7-ad67 (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Downloading sap_java_buildpack... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b creating container for instance 7a28e0c0-8da9-4887-bc03-89edb7da8eba (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Downloaded sap_java_buildpack (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:57 UTC 2020] Cell 5c69d67d-51ba-455b-965a-8119d79cee72 successfully destroyed container for instance 8f3f2af4-9e0d-4604-46b7-ad67 (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:58 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b successfully created container for instance 7a28e0c0-8da9-4887-bc03-89edb7da8eba (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:58 UTC 2020] Downloading build artifacts cache... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:58 UTC 2020] Downloading app package... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:58 UTC 2020] Downloaded build artifacts cache (131B) (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:59 UTC 2020] Downloaded app package (41.2M) (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:57:59 UTC 2020] Finalizing Java application... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Java XS Buildpack Version: 1.28.0 (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'Tomcat Runtime', version '8.5.57' in 0.1 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'XS Authenticator', version '1.24.7' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'XS JDBC DataSource', version '1.24.8' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'XS JDBC DataSource Factory', version '1.24.8' in 0.1 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'XS JDBC Routing DataSource', version '1.16.3' in 0.1 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'SAPJVM Statistics Provider', version '1.24.8' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'SAP HANA JDBC Driver', version '2.5.52' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'Memory Calculator V2', version '3.13.0.RELEASE' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'XS Hystrix Plugin Hook', version '1.24.8' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:05.716#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37881###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:01 UTC 2020] Downloaded 'JVMKill', version '1.16.0.RELEASE' in 0.0 s. (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:08 UTC 2020] Uploading build artifacts cache... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:08 UTC 2020] Uploading droplet... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:08 UTC 2020] Uploading droplet, build artifacts cache... (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:08 UTC 2020] Exit status 0 (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:08 UTC 2020] Uploaded build artifacts cache (131B) (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:15.675#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40168###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:10 UTC 2020] Creating droplet for app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:26.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37921###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:15 UTC 2020] Uploaded droplet (126.1M) (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:26.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37921###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:15 UTC 2020] Uploading complete (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:26.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37921###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:15 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b destroying container for instance 7a28e0c0-8da9-4887-bc03-89edb7da8eba (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:26.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37921###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:15 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b stopping instance 7a28e0c0-8da9-4887-bc03-89edb7da8eba (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:26.458#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.stageAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37921###
+[PollStageAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:16 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b successfully destroyed container for instance 7a28e0c0-8da9-4887-bc03-89edb7da8eba (STDOUT, STG)#
+
+#2.0#2020 09 25 07:58:46.374#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:30 UTC 2020] Updated app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 ({:droplet_guid=>"e3ef5333-ce10-4bec-8772-fc1218f7e54d"}) (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:46.374#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:31 UTC 2020] Updated app with guid eef5d677-e49a-42b5-86fc-8edc95dbc456 ({"state"=>"STARTED"}) (STDOUT, API)#
+
+#2.0#2020 09 25 07:58:46.374#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:31 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b creating container for instance 44d2d005-579c-4c5b-6d3b-250e (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:32 UTC 2020] Cell d8eab7bd-8f13-4598-a26b-00bb71b3764b successfully created container for instance 44d2d005-579c-4c5b-6d3b-250e (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:32 UTC 2020] Downloading droplet... (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:35 UTC 2020] Downloaded droplet (126.1M) (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:35 UTC 2020] Starting health monitoring of container (STDOUT, CELL)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:39 UTC 2020] { "written_at":"2020-09-25T07:58:39.353Z","written_ts":42586505269700,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.startup.Catalina","thread":"main","level":"INFO","categories":[],"msg":"Initialization processed in 1137 ms" } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:39 UTC 2020] { "written_at":"2020-09-25T07:58:39.466Z","written_ts":42586616614759,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.core.StandardService","thread":"main","level":"INFO","categories":[],"msg":"Starting service [Catalina]" } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:46.375#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-40211###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:39 UTC 2020] { "written_at":"2020-09-25T07:58:39.466Z","written_ts":42586617122315,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.core.StandardEngine","thread":"main","level":"INFO","categories":[],"msg":"Starting Servlet Engine: Apache Tomcat/8.5.57" } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:56.372#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37944###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:53 UTC 2020] { "written_at":"2020-09-25T07:58:53.564Z","written_ts":42600714355888,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/]","thread":"localhost-startStop-1","level":"ERROR","categories":[],"msg":"For security constraints with URL pattern [/odata/v4/*] the HTTP methods [HEAD DELETE POST GET PUT PATCH] are uncovered." } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:56.372#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37944###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:53 UTC 2020] { "written_at":"2020-09-25T07:58:53.563Z","written_ts":42600713707468,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.core.ContainerBase.[Catalina].[localhost].[/]","thread":"localhost-startStop-1","level":"ERROR","categories":[],"msg":"For security constraints with URL pattern [/*] only the HTTP methods [HEAD OPTIONS] are covered. All other methods are uncovered." } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:56.372#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37944###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:53 UTC 2020] { "written_at":"2020-09-25T07:58:53.762Z","written_ts":42600912748883,"tenant_id":"-","component_type":"application","component_id":"eef5d677-e49a-42b5-86fc-8edc95dbc456","space_name":"dev","component_name":"CAP_Orders-srv","component_instance":"0","organization_id":"1357eefc-2aef-4915-8e6f-c2e9f1839bc6","correlation_id":"-","organization_name":"38099938trial","space_id":"744cff97-f365-4766-af48-0f3a4f8442f5","container_id":"10.32.2.11","type":"log","logger":"org.apache.catalina.startup.Catalina","thread":"main","level":"INFO","categories":[],"msg":"Server startup in 14372 ms" } (STDOUT, APP/PROC/WEB)#
+
+#2.0#2020 09 25 07:58:56.372#Z#DEBUG#com.sap.cloud.lm.sl.xs2.e524a4d0-ff03-11ea-a951-eeee0a9fa619.CAP_Orders-srv.startAppTask#
+######org.cloudfoundry.multiapps.controller.persistence.services.ProcessLogger########flowable-async-job-executor-thread-37944###
+[PollStartAppStatusExecution] [CAP_Orders-srv] eef5d677-e49a-42b5-86fc-8edc95dbc456 [Fri Sep 25 07:58:54 UTC 2020] Container became healthy (STDOUT, CELL)#
+

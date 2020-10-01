@@ -21,10 +21,6 @@
           "key": true,
           "type": "cds.Integer"
         },
-        "name": {
-          "type": "cds.String",
-          "length": 40
-        },
         "orderPositions": {
           "type": "cds.Composition",
           "cardinality": {
@@ -419,12 +415,6 @@
           "Value": {
             "=": "ID"
           }
-        },
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "name"
-          }
         }
       ],
       "@UI.HeaderInfo.TypeName": "Order",
@@ -435,17 +425,11 @@
           "Value": {
             "=": "ID"
           }
-        },
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "name"
-          }
         }
       ],
       "@UI.PresentationVariant.SortOrder": [
         {
-          "Property": "name",
+          "Property": "ID",
           "Ascending": true
         }
       ],
@@ -467,20 +451,9 @@
       },
       "elements": {
         "ID": {
-          "@Common.FieldControl": {
-            "#": "Mandatory"
-          },
           "key": true,
           "type": "cds.Integer",
           "@Common.Label": "Order ID"
-        },
-        "name": {
-          "@Common.FieldControl": {
-            "#": "Mandatory"
-          },
-          "type": "cds.String",
-          "length": 40,
-          "@Common.Label": "Order"
         },
         "orderPositions": {
           "type": "cds.Composition",

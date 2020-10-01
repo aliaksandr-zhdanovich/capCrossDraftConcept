@@ -58,7 +58,6 @@
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
         <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
-        <Property Name="name" Type="Edm.String" MaxLength="40"/>
         <NavigationProperty Name="orderPositions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="parent">
           <OnDelete Action="Cascade"/>
         </NavigationProperty>
@@ -158,9 +157,6 @@
                 <Record Type="UI.DataField">
                   <PropertyValue Property="Value" Path="ID"/>
                 </Record>
-                <Record Type="UI.DataField">
-                  <PropertyValue Property="Value" Path="name"/>
-                </Record>
               </Collection>
             </PropertyValue>
           </Record>
@@ -176,9 +172,6 @@
             <Record Type="UI.DataField">
               <PropertyValue Property="Value" Path="ID"/>
             </Record>
-            <Record Type="UI.DataField">
-              <PropertyValue Property="Value" Path="name"/>
-            </Record>
           </Collection>
         </Annotation>
         <Annotation Term="UI.PresentationVariant">
@@ -186,7 +179,7 @@
             <PropertyValue Property="SortOrder">
               <Collection>
                 <Record Type="Common.SortOrderType">
-                  <PropertyValue Property="Property" PropertyPath="name"/>
+                  <PropertyValue Property="Property" PropertyPath="ID"/>
                   <PropertyValue Property="Ascending" Bool="true"/>
                 </Record>
               </Collection>
@@ -209,12 +202,7 @@
         </Annotation>
       </Annotations>
       <Annotations Target="cap.srv.order.OrderService.Orders/ID">
-        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
         <Annotation Term="Common.Label" String="Order ID"/>
-      </Annotations>
-      <Annotations Target="cap.srv.order.OrderService.Orders/name">
-        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
-        <Annotation Term="Common.Label" String="Order"/>
       </Annotations>
       <Annotations Target="cap.srv.order.OrderService.Orders/IsActiveEntity">
         <Annotation Term="UI.Hidden" Bool="true"/>

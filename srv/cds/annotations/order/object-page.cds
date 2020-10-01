@@ -16,14 +16,11 @@ annotate order.OrderService.Orders with @(
         FieldGroup#GeneralInfo: {
 			Data: [
 				{ $Type: 'UI.DataField', Value: ID },
-				{ $Type: 'UI.DataField', Value: name }
+//				{ $Type: 'UI.DataField', Value: name }
             ]
         }
     }
 )
 {
-    ID
-    @Common.FieldControl: #Mandatory;
-    name
-    @Common.FieldControl: #Mandatory;
+    
 };
