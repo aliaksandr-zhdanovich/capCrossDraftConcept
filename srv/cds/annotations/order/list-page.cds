@@ -6,7 +6,7 @@ annotate order.OrderService.Orders with @(
     UI: {
         LineItem: [
             { $Type: 'UI.DataField', Value: ID },
-//            { $Type: 'UI.DataField', Value: name }
+            { $Type: 'UI.DataField', Value: name }
         ],
 
         PresentationVariant: {

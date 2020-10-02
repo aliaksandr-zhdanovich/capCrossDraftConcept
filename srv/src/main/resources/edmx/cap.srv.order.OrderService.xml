@@ -58,6 +58,7 @@
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
         <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="40"/>
         <NavigationProperty Name="orderPositions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="parent">
           <OnDelete Action="Cascade"/>
         </NavigationProperty>
@@ -157,6 +158,9 @@
                 <Record Type="UI.DataField">
                   <PropertyValue Property="Value" Path="ID"/>
                 </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="name"/>
+                </Record>
               </Collection>
             </PropertyValue>
           </Record>
@@ -171,6 +175,9 @@
           <Collection>
             <Record Type="UI.DataField">
               <PropertyValue Property="Value" Path="ID"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
             </Record>
           </Collection>
         </Annotation>

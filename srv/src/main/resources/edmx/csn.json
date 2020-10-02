@@ -21,6 +21,10 @@
           "key": true,
           "type": "cds.Integer"
         },
+        "name": {
+          "type": "cds.String",
+          "length": 40
+        },
         "orderPositions": {
           "type": "cds.Composition",
           "cardinality": {
@@ -243,14 +247,16 @@
     },
     "cap.srv.order.OrderService.OrderPositions": {
       "kind": "entity",
-      "@cds.autoexposed": true,
       "query": {
         "SELECT": {
           "from": {
             "ref": [
               "cap.db.order_position.OrderPositions"
             ]
-          }
+          },
+          "columns": [
+            "*"
+          ]
         }
       },
       "elements": {
@@ -379,6 +385,7 @@
           ]
         }
       },
+      "$syntax": "entity",
       "@Common.DraftNode.PreparationAction": "draftPrepare",
       "actions": {
         "draftPrepare": {
@@ -415,6 +422,12 @@
           "Value": {
             "=": "ID"
           }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
+          }
         }
       ],
       "@UI.HeaderInfo.TypeName": "Order",
@@ -424,6 +437,12 @@
           "$Type": "UI.DataField",
           "Value": {
             "=": "ID"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
           }
         }
       ],
@@ -454,6 +473,10 @@
           "key": true,
           "type": "cds.Integer",
           "@Common.Label": "Order ID"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40
         },
         "orderPositions": {
           "type": "cds.Composition",

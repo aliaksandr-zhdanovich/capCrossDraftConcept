@@ -4,75 +4,25 @@ parameters:
   deploy_mode: html5-repo
 version: 0.0.1
 modules:
-#*************** approuter ***************
-
-  - name: cap-orders-approuter
-    type: approuter.nodejs
-    path: cap-orders-approuter
-    parameters:
-      disk-quota: 256M
-      memory: 256M
-    requires:
-      - name: CAP_Orders_html5_repo_runtime
-      - name: CAP_Orders_ui_deployer
-      - name: CAP_Orders-uaa
-      - name: portal_resources_CAP_Orders
-      - name: srv_api
-        group: destinations
-        properties:
-          forwardAuthToken: false
-          name: srv_api
-          url: '~{url}'
-      
-#*************** UI application ***************
-
-  - name: orders
-    type: html5
-    path: app/orders
-    parameters:
-      disk-quota: 256M
-      memory: 256M
-    build-parameters:
-      supported-platforms: []
-      build-result: dist
-      builder: grunt
-
-#*************** deployer ***************
-
-  - name: CAP_Orders_ui_deployer
-    deployed-after:
-      - orders
-    type: com.sap.html5.application-content
-    path: CAP_Orders_ui_deployer
-    requires:
-      - name: CAP_Orders_html5_repo_host
-    parameters:
-      memory: 256M
-    build-parameters:
-      requires:
-        - name: orders
-          artifacts:
-            - './*'
-          target-path: resources/orders
 
 #*************** db module ***************
 
-  - name: CAP_Orders-db
+  - name: orders-db
     type: hdb
     path: db
     parameters:
       memory: 512M
       health-check-type: none
     requires:
-      - name: CAP_Orders-db-hdi-container
+      - name: orders-db-hdi-container
         properties:
           TARGET_CONTAINER: '~{hdi-container-name}'
 
 #*************** srv module ***************
 
-  - name: CAP_Orders-srv
+  - name: orders-srv
     deployed-after:
-      - CAP_Orders-db
+      - orders-db
     type: java
     path: srv
     parameters:
@@ -82,57 +32,26 @@ modules:
         properties:
           url: '${default-url}'
     requires:
-      - name: CAP_Orders-db-hdi-container
+      - name: orders-db-hdi-container
         properties:
           JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
-      - name: CAP_Orders-uaa
-
-#*************** flp content ***************
-
-  - name: flp-content
-    deployed-after:
-      - CAP_Orders_ui_deployer
-    type: com.sap.portal.content
-    path: flp-content
-    parameters:
-      stack: cflinuxfs3
-      memory: 128M
-    requires:
-      - name: portal_resources_CAP_Orders
-      - name: CAP_Orders-uaa
-      - name: CAP_Orders_html5_repo_host
-      - name: CAP_Orders_ui_deployer
+      - name: orders-uaa
 
 #*************** resources ***************
 
 resources:
-  - name: CAP_Orders_html5_repo_runtime
-    parameters:
-      service-plan: app-runtime
-      service: html5-apps-repo
-    type: org.cloudfoundry.managed-service
-  - name: CAP_Orders_html5_repo_host
-    parameters:
-      service-plan: app-host
-      service: html5-apps-repo
-    type: org.cloudfoundry.managed-service
-  - name: CAP_Orders-db-hdi-container
+  - name: orders-db-hdi-container
     type: com.sap.xs.hdi-container
     parameters:
       service: hanatrial
       service-plan: hdi-shared
     properties:
       hdi-container-name: '${service-name}'
-  - name: CAP_Orders-uaa
+  - name: orders-uaa
     type: org.cloudfoundry.managed-service
     parameters:
       service-plan: application
       service: xsuaa
       config:
-        xsappname: 'CAP_Orders-${space}'
+        xsappname: 'orders-${space}'
         tenant-mode: dedicated
-  - name: portal_resources_CAP_Orders
-    parameters:
-      service-plan: standard
-      service: portal
-    type: org.cloudfoundry.managed-service
