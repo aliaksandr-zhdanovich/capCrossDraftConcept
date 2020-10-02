@@ -9,6 +9,7 @@ Create new SAP Cloud Business Application space with additional SAP Extensions:
 ## Git issue
 
 Click to "Clone From Gin" on the Welcome page and paste Git url: https://github.com/aliaksandr-zhdanovich/capCrossDraftConcept.git
+
 Enter credentials for github.
 
 Next open Workspace and open a new terminal(Toolbar on top of the page: Terminal -> New Terminal)
