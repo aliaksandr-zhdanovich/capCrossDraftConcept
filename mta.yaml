@@ -1,0 +1,57 @@
+ID: CAP_Orders
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+
+#*************** db module ***************
+
+  - name: orders-db
+    type: hdb
+    path: db
+    parameters:
+      memory: 512M
+      health-check-type: none
+    requires:
+      - name: orders-db-hdi-container
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+
+#*************** srv module ***************
+
+  - name: orders-srv
+    deployed-after:
+      - orders-db
+    type: java
+    path: srv
+    parameters:
+      memory: 1024M
+    provides:
+      - name: srv_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: orders-db-hdi-container
+        properties:
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+      - name: orders-uaa
+
+#*************** resources ***************
+
+resources:
+  - name: orders-db-hdi-container
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hanatrial
+      service-plan: hdi-shared
+    properties:
+      hdi-container-name: '${service-name}'
+  - name: orders-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service-plan: application
+      service: xsuaa
+      config:
+        xsappname: 'orders-${space}'
+        tenant-mode: dedicated

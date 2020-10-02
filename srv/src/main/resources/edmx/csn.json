@@ -1,0 +1,777 @@
+{
+  "namespace": "cap.db",
+  "definitions": {
+    "cap.db.material.Materials": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "material": {
+          "type": "cds.String",
+          "length": 50
+        }
+      }
+    },
+    "cap.db.order.Orders": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "orderPositions": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "cap.db.order_position.OrderPositions",
+          "on": [
+            {
+              "ref": [
+                "orderPositions",
+                "parent"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "cap.db.order_position.OrderPositions": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "position": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "parent": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "cap.db.order.Orders",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "parent_ID"
+            }
+          ]
+        },
+        "material": {
+          "type": "cds.Association",
+          "target": "cap.db.material.Materials",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "material_ID"
+            }
+          ]
+        },
+        "parent_ID": {
+          "type": "cds.Integer",
+          "@odata.foreignKey4": "parent"
+        },
+        "material_ID": {
+          "type": "cds.Integer",
+          "@odata.foreignKey4": "material"
+        }
+      }
+    },
+    "cap.srv.material.MaterialService": {
+      "@source": "srv/cds/services/material.cds",
+      "kind": "service"
+    },
+    "cap.srv.material.MaterialService.Materials": {
+      "kind": "entity",
+      "@odata.draft.enabled": true,
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "cap.db.material.Materials"
+            ]
+          },
+          "columns": [
+            "*"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "material": {
+          "type": "cds.String",
+          "length": 50
+        },
+        "IsActiveEntity": {
+          "type": "cds.Boolean",
+          "key": true,
+          "default": {
+            "val": true
+          },
+          "@UI.Hidden": true
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "cap.srv.material.MaterialService.DraftAdministrativeData",
+          "keys": [
+            {
+              "ref": [
+                "DraftUUID"
+              ],
+              "$generatedFieldName": "DraftAdministrativeData_DraftUUID"
+            }
+          ],
+          "cardinality": {
+            "max": 1
+          },
+          "@odata.contained": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData_DraftUUID": {
+          "type": "cds.UUID",
+          "@odata.contained": true,
+          "@UI.Hidden": true,
+          "@odata.foreignKey4": "DraftAdministrativeData"
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "cap.srv.material.MaterialService.Materials",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": [
+                "SiblingEntity",
+                "ID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "SiblingEntity",
+                "IsActiveEntity"
+              ]
+            },
+            "!=",
+            {
+              "ref": [
+                "IsActiveEntity"
+              ]
+            }
+          ]
+        }
+      },
+      "$syntax": "entity",
+      "@Common.DraftRoot.ActivationAction": "draftActivate",
+      "@Common.DraftRoot.EditAction": "draftEdit",
+      "@Common.DraftRoot.PreparationAction": "draftPrepare",
+      "actions": {
+        "draftPrepare": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.material.MaterialService.Materials"
+          },
+          "params": {
+            "SideEffectsQualifier": {
+              "type": "cds.String"
+            }
+          }
+        },
+        "draftActivate": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.material.MaterialService.Materials"
+          }
+        },
+        "draftEdit": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.material.MaterialService.Materials"
+          },
+          "params": {
+            "PreserveChanges": {
+              "type": "cds.Boolean"
+            }
+          }
+        }
+      }
+    },
+    "cap.srv.order.OrderService": {
+      "@source": "srv/cds/services/order.cds",
+      "kind": "service"
+    },
+    "cap.srv.order.OrderService.OrderPositions": {
+      "kind": "entity",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "cap.db.order_position.OrderPositions"
+            ]
+          },
+          "columns": [
+            "*"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "position": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "parent": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": 1
+          },
+          "target": "cap.srv.order.OrderService.Orders",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "parent_ID"
+            }
+          ]
+        },
+        "material": {
+          "type": "cds.Association",
+          "target": "cap.db.material.Materials",
+          "keys": [
+            {
+              "ref": [
+                "ID"
+              ],
+              "$generatedFieldName": "material_ID"
+            }
+          ]
+        },
+        "parent_ID": {
+          "type": "cds.Integer",
+          "@odata.foreignKey4": "parent"
+        },
+        "material_ID": {
+          "type": "cds.Integer",
+          "@odata.foreignKey4": "material"
+        },
+        "IsActiveEntity": {
+          "type": "cds.Boolean",
+          "key": true,
+          "default": {
+            "val": true
+          },
+          "@UI.Hidden": true
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.DraftAdministrativeData",
+          "keys": [
+            {
+              "ref": [
+                "DraftUUID"
+              ],
+              "$generatedFieldName": "DraftAdministrativeData_DraftUUID"
+            }
+          ],
+          "cardinality": {
+            "max": 1
+          },
+          "@odata.contained": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData_DraftUUID": {
+          "type": "cds.UUID",
+          "@odata.contained": true,
+          "@UI.Hidden": true,
+          "@odata.foreignKey4": "DraftAdministrativeData"
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.OrderPositions",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": [
+                "SiblingEntity",
+                "ID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "SiblingEntity",
+                "IsActiveEntity"
+              ]
+            },
+            "!=",
+            {
+              "ref": [
+                "IsActiveEntity"
+              ]
+            }
+          ]
+        }
+      },
+      "$syntax": "entity",
+      "@Common.DraftNode.PreparationAction": "draftPrepare",
+      "actions": {
+        "draftPrepare": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.OrderPositions"
+          },
+          "params": {
+            "SideEffectsQualifier": {
+              "type": "cds.String"
+            }
+          }
+        }
+      }
+    },
+    "cap.srv.order.OrderService.Orders": {
+      "kind": "entity",
+      "@Common.SemanticKey": [
+        {
+          "=": "ID"
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "ID": "GeneralInformation",
+          "Label": "General Information",
+          "Target": "@UI.FieldGroup#GeneralInfo"
+        }
+      ],
+      "@UI.FieldGroup#GeneralInfo.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ID"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@UI.HeaderInfo.TypeName": "Order",
+      "@UI.HeaderInfo.TypeNamePlural": "Orders",
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ID"
+          }
+        },
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "name"
+          }
+        }
+      ],
+      "@UI.PresentationVariant.SortOrder": [
+        {
+          "Property": "ID",
+          "Ascending": true
+        }
+      ],
+      "@UI.PresentationVariant.Visualizations": [
+        "@UI.LineItem"
+      ],
+      "@odata.draft.enabled": true,
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "cap.db.order.Orders"
+            ]
+          },
+          "columns": [
+            "*"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer",
+          "@Common.Label": "Order ID"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "orderPositions": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "cap.srv.order.OrderService.OrderPositions",
+          "on": [
+            {
+              "ref": [
+                "orderPositions",
+                "parent"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
+        },
+        "IsActiveEntity": {
+          "type": "cds.Boolean",
+          "key": true,
+          "default": {
+            "val": true
+          },
+          "@UI.Hidden": true
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.DraftAdministrativeData",
+          "keys": [
+            {
+              "ref": [
+                "DraftUUID"
+              ],
+              "$generatedFieldName": "DraftAdministrativeData_DraftUUID"
+            }
+          ],
+          "cardinality": {
+            "max": 1
+          },
+          "@odata.contained": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData_DraftUUID": {
+          "type": "cds.UUID",
+          "@odata.contained": true,
+          "@UI.Hidden": true,
+          "@odata.foreignKey4": "DraftAdministrativeData"
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.Orders",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": [
+                "SiblingEntity",
+                "ID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "SiblingEntity",
+                "IsActiveEntity"
+              ]
+            },
+            "!=",
+            {
+              "ref": [
+                "IsActiveEntity"
+              ]
+            }
+          ]
+        }
+      },
+      "$syntax": "entity",
+      "@Common.DraftRoot.ActivationAction": "draftActivate",
+      "@Common.DraftRoot.EditAction": "draftEdit",
+      "@Common.DraftRoot.PreparationAction": "draftPrepare",
+      "actions": {
+        "draftPrepare": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Orders"
+          },
+          "params": {
+            "SideEffectsQualifier": {
+              "type": "cds.String"
+            }
+          }
+        },
+        "draftActivate": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Orders"
+          }
+        },
+        "draftEdit": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Orders"
+          },
+          "params": {
+            "PreserveChanges": {
+              "type": "cds.Boolean"
+            }
+          }
+        }
+      }
+    },
+    "DRAFT.DraftAdministrativeData": {
+      "kind": "entity",
+      "elements": {
+        "DraftUUID": {
+          "type": "cds.UUID",
+          "key": true,
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftUUID}"
+        },
+        "CreationDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_CreationDateTime}"
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_CreatedByUser}"
+        },
+        "DraftIsCreatedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsCreatedByMe}"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_LastChangeDateTime}"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_LastChangedByUser}"
+        },
+        "InProcessByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_InProcessByUser}"
+        },
+        "DraftIsProcessedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsProcessedByMe}"
+        }
+      },
+      "@Common.Label": "{i18n>Draft_DraftAdministrativeData}"
+    },
+    "cap.srv.material.MaterialService.DraftAdministrativeData": {
+      "kind": "entity",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "DRAFT.DraftAdministrativeData"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "DraftUUID": {
+          "type": "cds.UUID",
+          "key": true,
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftUUID}"
+        },
+        "CreationDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_CreationDateTime}"
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_CreatedByUser}"
+        },
+        "DraftIsCreatedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsCreatedByMe}"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_LastChangeDateTime}"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_LastChangedByUser}"
+        },
+        "InProcessByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_InProcessByUser}"
+        },
+        "DraftIsProcessedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsProcessedByMe}"
+        }
+      },
+      "@Common.Label": "{i18n>Draft_DraftAdministrativeData}"
+    },
+    "cap.srv.order.OrderService.DraftAdministrativeData": {
+      "kind": "entity",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "DRAFT.DraftAdministrativeData"
+            ]
+          }
+        }
+      },
+      "elements": {
+        "DraftUUID": {
+          "type": "cds.UUID",
+          "key": true,
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftUUID}"
+        },
+        "CreationDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_CreationDateTime}"
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_CreatedByUser}"
+        },
+        "DraftIsCreatedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsCreatedByMe}"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp",
+          "@Common.Label": "{i18n>Draft_LastChangeDateTime}"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_LastChangedByUser}"
+        },
+        "InProcessByUser": {
+          "type": "cds.String",
+          "length": 256,
+          "@Common.Label": "{i18n>Draft_InProcessByUser}"
+        },
+        "DraftIsProcessedByMe": {
+          "type": "cds.Boolean",
+          "@UI.Hidden": true,
+          "@Common.Label": "{i18n>Draft_DraftIsProcessedByMe}"
+        }
+      },
+      "@Common.Label": "{i18n>Draft_DraftAdministrativeData}"
+    }
+  },
+  "$version": "1.0",
+  "meta": {
+    "creator": "CDS Compiler v1.39.0"
+  }
+}
