@@ -9,10 +9,120 @@
           "type": "cds.UUID"
         },
         "name": {
-          "type": "cds.String",
-          "length": 50
+          "type": "cds.String"
         }
       }
+    },
+    "cap.db.Objects": {
+      "kind": "entity",
+      "query": {
+        "SET": {
+          "op": "union",
+          "args": [
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "cap.db.Materials"
+                  ]
+                },
+                "columns": [
+                  {
+                    "key": true,
+                    "ref": [
+                      "ID"
+                    ]
+                  },
+                  {
+                    "ref": [
+                      "name"
+                    ]
+                  },
+                  {
+                    "val": "MATERIAL",
+                    "as": "type",
+                    "cast": {
+                      "type": "cds.String"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "cap.db.Orders"
+                  ]
+                },
+                "columns": [
+                  {
+                    "ref": [
+                      "ID"
+                    ]
+                  },
+                  {
+                    "ref": [
+                      "name"
+                    ]
+                  },
+                  {
+                    "val": "ORDER",
+                    "as": "type",
+                    "cast": {
+                      "type": "cds.String"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "SELECT": {
+                "from": {
+                  "ref": [
+                    "cap.db.OrderPositions"
+                  ]
+                },
+                "columns": [
+                  {
+                    "ref": [
+                      "ID"
+                    ]
+                  },
+                  {
+                    "val": "Order Position",
+                    "as": "name",
+                    "cast": {
+                      "type": "cds.String"
+                    }
+                  },
+                  {
+                    "val": "ORDER_POSITION",
+                    "as": "type",
+                    "cast": {
+                      "type": "cds.String"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String"
+        },
+        "type": {
+          "@Core.Computed": true,
+          "type": "cds.String"
+        }
+      },
+      "$syntax": "view"
     },
     "cap.db.OrderPositions": {
       "kind": "entity",
@@ -24,7 +134,7 @@
         "position": {
           "type": "cds.Integer"
         },
-        "order": {
+        "toOrder": {
           "type": "cds.Association",
           "cardinality": {
             "max": 1
@@ -35,11 +145,11 @@
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "order_ID"
+              "$generatedFieldName": "toOrder_ID"
             }
           ]
         },
-        "material": {
+        "toMaterial": {
           "type": "cds.Association",
           "target": "cap.db.Materials",
           "keys": [
@@ -47,17 +157,17 @@
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "material_ID"
+              "$generatedFieldName": "toMaterial_ID"
             }
           ]
         },
-        "order_ID": {
+        "toOrder_ID": {
           "type": "cds.UUID",
-          "@odata.foreignKey4": "order"
+          "@odata.foreignKey4": "toOrder"
         },
-        "material_ID": {
+        "toMaterial_ID": {
           "type": "cds.UUID",
-          "@odata.foreignKey4": "material"
+          "@odata.foreignKey4": "toMaterial"
         }
       }
     },
@@ -69,10 +179,9 @@
           "type": "cds.UUID"
         },
         "name": {
-          "type": "cds.String",
-          "length": 40
+          "type": "cds.String"
         },
-        "positions": {
+        "toPositions": {
           "type": "cds.Composition",
           "cardinality": {
             "max": "*"
@@ -81,8 +190,8 @@
           "on": [
             {
               "ref": [
-                "positions",
-                "order"
+                "toPositions",
+                "toOrder"
               ]
             },
             "=",
@@ -120,8 +229,7 @@
           "type": "cds.UUID"
         },
         "name": {
-          "type": "cds.String",
-          "length": 50
+          "type": "cds.String"
         },
         "IsActiveEntity": {
           "type": "cds.Boolean",
@@ -264,11 +372,154 @@
           "type": "cds.UUID"
         },
         "name": {
-          "type": "cds.String",
-          "length": 50
+          "type": "cds.String"
         }
       },
       "$syntax": "entity"
+    },
+    "cap.srv.order.OrderService.Objects": {
+      "kind": "entity",
+      "@odata.draft.enabled": true,
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "cap.db.Objects"
+            ]
+          },
+          "columns": [
+            "*"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String"
+        },
+        "type": {
+          "@Core.Computed": true,
+          "type": "cds.String"
+        },
+        "IsActiveEntity": {
+          "type": "cds.Boolean",
+          "key": true,
+          "default": {
+            "val": true
+          },
+          "@UI.Hidden": true
+        },
+        "HasActiveEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "HasDraftEntity": {
+          "type": "cds.Boolean",
+          "default": {
+            "val": false
+          },
+          "notNull": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.DraftAdministrativeData",
+          "keys": [
+            {
+              "ref": [
+                "DraftUUID"
+              ],
+              "$generatedFieldName": "DraftAdministrativeData_DraftUUID"
+            }
+          ],
+          "cardinality": {
+            "max": 1
+          },
+          "@odata.contained": true,
+          "@UI.Hidden": true
+        },
+        "DraftAdministrativeData_DraftUUID": {
+          "type": "cds.UUID",
+          "@odata.contained": true,
+          "@UI.Hidden": true,
+          "@odata.foreignKey4": "DraftAdministrativeData"
+        },
+        "SiblingEntity": {
+          "type": "cds.Association",
+          "target": "cap.srv.order.OrderService.Objects",
+          "cardinality": {
+            "max": 1
+          },
+          "on": [
+            {
+              "ref": [
+                "SiblingEntity",
+                "ID"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "ID"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "SiblingEntity",
+                "IsActiveEntity"
+              ]
+            },
+            "!=",
+            {
+              "ref": [
+                "IsActiveEntity"
+              ]
+            }
+          ]
+        }
+      },
+      "$syntax": "entity",
+      "@Common.DraftRoot.ActivationAction": "draftActivate",
+      "@Common.DraftRoot.EditAction": "draftEdit",
+      "@Common.DraftRoot.PreparationAction": "draftPrepare",
+      "actions": {
+        "draftPrepare": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Objects"
+          },
+          "params": {
+            "SideEffectsQualifier": {
+              "type": "cds.String"
+            }
+          }
+        },
+        "draftActivate": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Objects"
+          }
+        },
+        "draftEdit": {
+          "kind": "action",
+          "returns": {
+            "type": "cap.srv.order.OrderService.Objects"
+          },
+          "params": {
+            "PreserveChanges": {
+              "type": "cds.Boolean"
+            }
+          }
+        }
+      }
     },
     "cap.srv.order.OrderService.OrderPositions": {
       "kind": "entity",
@@ -292,7 +543,7 @@
         "position": {
           "type": "cds.Integer"
         },
-        "order": {
+        "toOrder": {
           "type": "cds.Association",
           "cardinality": {
             "max": 1
@@ -303,11 +554,11 @@
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "order_ID"
+              "$generatedFieldName": "toOrder_ID"
             }
           ]
         },
-        "material": {
+        "toMaterial": {
           "type": "cds.Association",
           "target": "cap.srv.order.OrderService.Materials",
           "keys": [
@@ -315,17 +566,17 @@
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "material_ID"
+              "$generatedFieldName": "toMaterial_ID"
             }
           ]
         },
-        "order_ID": {
+        "toOrder_ID": {
           "type": "cds.UUID",
-          "@odata.foreignKey4": "order"
+          "@odata.foreignKey4": "toOrder"
         },
-        "material_ID": {
+        "toMaterial_ID": {
           "type": "cds.UUID",
-          "@odata.foreignKey4": "material"
+          "@odata.foreignKey4": "toMaterial"
         },
         "IsActiveEntity": {
           "type": "cds.Boolean",
@@ -446,10 +697,9 @@
           "type": "cds.UUID"
         },
         "name": {
-          "type": "cds.String",
-          "length": 40
+          "type": "cds.String"
         },
-        "positions": {
+        "toPositions": {
           "type": "cds.Composition",
           "cardinality": {
             "max": "*"
@@ -458,8 +708,8 @@
           "on": [
             {
               "ref": [
-                "positions",
-                "order"
+                "toPositions",
+                "toOrder"
               ]
             },
             "=",

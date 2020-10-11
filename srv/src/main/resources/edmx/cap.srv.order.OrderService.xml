@@ -13,13 +13,16 @@
     <Schema Namespace="cap.srv.order.OrderService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="EntityContainer">
         <EntitySet Name="Materials" EntityType="cap.srv.order.OrderService.Materials"/>
+        <EntitySet Name="Objects" EntityType="cap.srv.order.OrderService.Objects">
+          <NavigationPropertyBinding Path="SiblingEntity" Target="Objects"/>
+        </EntitySet>
         <EntitySet Name="OrderPositions" EntityType="cap.srv.order.OrderService.OrderPositions">
-          <NavigationPropertyBinding Path="order" Target="Orders"/>
-          <NavigationPropertyBinding Path="material" Target="Materials"/>
+          <NavigationPropertyBinding Path="toOrder" Target="Orders"/>
+          <NavigationPropertyBinding Path="toMaterial" Target="Materials"/>
           <NavigationPropertyBinding Path="SiblingEntity" Target="OrderPositions"/>
         </EntitySet>
         <EntitySet Name="Orders" EntityType="cap.srv.order.OrderService.Orders">
-          <NavigationPropertyBinding Path="positions" Target="OrderPositions"/>
+          <NavigationPropertyBinding Path="toPositions" Target="OrderPositions"/>
           <NavigationPropertyBinding Path="SiblingEntity" Target="Orders"/>
         </EntitySet>
       </EntityContainer>
@@ -41,7 +44,21 @@
           <PropertyRef Name="ID"/>
         </Key>
         <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
-        <Property Name="name" Type="Edm.String" MaxLength="50"/>
+        <Property Name="name" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Objects">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="type" Type="Edm.String"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="cap.srv.order.OrderService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="cap.srv.order.OrderService.Objects"/>
       </EntityType>
       <EntityType Name="OrderPositions">
         <Key>
@@ -50,14 +67,14 @@
         </Key>
         <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="position" Type="Edm.Int32"/>
-        <NavigationProperty Name="order" Type="cap.srv.order.OrderService.Orders" Partner="positions">
-          <ReferentialConstraint Property="order_ID" ReferencedProperty="ID"/>
+        <NavigationProperty Name="toOrder" Type="cap.srv.order.OrderService.Orders" Partner="toPositions">
+          <ReferentialConstraint Property="toOrder_ID" ReferencedProperty="ID"/>
         </NavigationProperty>
-        <NavigationProperty Name="material" Type="cap.srv.order.OrderService.Materials">
-          <ReferentialConstraint Property="material_ID" ReferencedProperty="ID"/>
+        <NavigationProperty Name="toMaterial" Type="cap.srv.order.OrderService.Materials">
+          <ReferentialConstraint Property="toMaterial_ID" ReferencedProperty="ID"/>
         </NavigationProperty>
-        <Property Name="order_ID" Type="Edm.Guid"/>
-        <Property Name="material_ID" Type="Edm.Guid"/>
+        <Property Name="toOrder_ID" Type="Edm.Guid"/>
+        <Property Name="toMaterial_ID" Type="Edm.Guid"/>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
@@ -70,8 +87,8 @@
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
         <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
-        <Property Name="name" Type="Edm.String" MaxLength="40"/>
-        <NavigationProperty Name="positions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="order">
+        <Property Name="name" Type="Edm.String"/>
+        <NavigationProperty Name="toPositions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="toOrder">
           <OnDelete Action="Cascade"/>
         </NavigationProperty>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
@@ -80,6 +97,11 @@
         <NavigationProperty Name="DraftAdministrativeData" Type="cap.srv.order.OrderService.DraftAdministrativeData" ContainsTarget="true"/>
         <NavigationProperty Name="SiblingEntity" Type="cap.srv.order.OrderService.Orders"/>
       </EntityType>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="cap.srv.order.OrderService.Objects"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="cap.srv.order.OrderService.Objects"/>
+      </Action>
       <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
         <Parameter Name="in" Type="cap.srv.order.OrderService.OrderPositions"/>
         <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
@@ -91,8 +113,17 @@
         <ReturnType Type="cap.srv.order.OrderService.Orders"/>
       </Action>
       <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="cap.srv.order.OrderService.Objects"/>
+        <ReturnType Type="cap.srv.order.OrderService.Objects"/>
+      </Action>
+      <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
         <Parameter Name="in" Type="cap.srv.order.OrderService.Orders"/>
         <ReturnType Type="cap.srv.order.OrderService.Orders"/>
+      </Action>
+      <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="cap.srv.order.OrderService.Objects"/>
+        <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+        <ReturnType Type="cap.srv.order.OrderService.Objects"/>
       </Action>
       <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
         <Parameter Name="in" Type="cap.srv.order.OrderService.Orders"/>
@@ -127,6 +158,30 @@
       </Annotations>
       <Annotations Target="cap.srv.order.OrderService.DraftAdministrativeData/DraftIsProcessedByMe">
         <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.EntityContainer/Objects">
+        <Annotation Term="Common.DraftRoot">
+          <Record Type="Common.DraftRootType">
+            <PropertyValue Property="ActivationAction" String="cap.srv.order.OrderService.draftActivate"/>
+            <PropertyValue Property="EditAction" String="cap.srv.order.OrderService.draftEdit"/>
+            <PropertyValue Property="PreparationAction" String="cap.srv.order.OrderService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.Objects/type">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.Objects/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.Objects/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.Objects/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="cap.srv.order.OrderService.Objects/DraftAdministrativeData">
         <Annotation Term="UI.Hidden" Bool="true"/>
       </Annotations>
       <Annotations Target="cap.srv.order.OrderService.EntityContainer/OrderPositions">
