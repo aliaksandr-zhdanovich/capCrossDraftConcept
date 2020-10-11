@@ -22,6 +22,7 @@ git remote -v
 ```
 
 ## Cloud Foundry
+
 First, need to login with an own account.
 ```bash
 cf login -a API-URL (API-URL get from SCP)
@@ -32,6 +33,24 @@ Next, need to build archive and deploy it to SCP.
 ```bash
 mbt build
 cf deploy mta_archives/<archive_name>
+```
+
+## How to merge
+
+Create local branch
+```bash
+git branch <local branch name>
+```
+Commit changes via UI
+
+Push changes from local to remote branch, remote branch will be automatically created if doesn't exist
+```bash
+git push origin <local branch name>:<remote branch name>
+```
+
+go to the main local branch and update it
+```bash
+git pull
 ```
 
 Enjoy!
