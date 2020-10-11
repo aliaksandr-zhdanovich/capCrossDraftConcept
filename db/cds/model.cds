@@ -1,19 +1,37 @@
 namespace cap.db;
 
-entity Materials {
-    key ID  : cds.UUID;
-    name    : String(50);
+using { cuid, managed } from '@sap/cds/common';
+
+entity Materials: cuid {
+    name    : String;
 }
 
- entity Orders {
-     key ID     : cds.UUID;
-     name       : String(40);
-     positions  : Composition of many OrderPositions on positions.order = $self;
- }
+ entity Orders: cuid {
+    name        : String;
+    toPositions : Composition of many OrderPositions on toPositions.toOrder = $self;
+}
 
- entity OrderPositions {
-     key ID     : cds.UUID;
-     position   : Integer;
-     order      : Association to one Orders;
-     material   : Association to Materials;
- }
+ entity OrderPositions: cuid {
+    position    : Integer;
+    toOrder     : Association to one Orders;
+    toMaterial  : Association to Materials;
+}
+
+view Objects as 
+	select from Materials {
+		key ID,
+        name,
+        'MATERIAL' type : String
+	}
+	union
+    select from Orders {
+		ID,
+        name,
+        'ORDER' type    : String
+	}
+    union
+    select from OrderPositions {
+        ID,
+        'Order Position' name   : String,
+        'ORDER_POSITION' type   : String
+    };

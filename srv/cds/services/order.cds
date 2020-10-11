@@ -18,6 +18,13 @@ service OrderService {
     entity Materials as
         select from db.Materials {
             *
-        }
+        };
+
+    @odata.draft.enabled
+    entity Objects as
+        select from db.Objects {
+            *
+    }
+
 }
 
