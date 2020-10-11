@@ -34,8 +34,8 @@
           <PropertyRef Name="ID"/>
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
-        <Property Name="material" Type="Edm.String" MaxLength="50"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="50"/>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>

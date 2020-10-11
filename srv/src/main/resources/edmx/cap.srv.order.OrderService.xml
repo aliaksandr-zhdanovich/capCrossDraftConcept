@@ -12,12 +12,14 @@
   <edmx:DataServices>
     <Schema Namespace="cap.srv.order.OrderService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
       <EntityContainer Name="EntityContainer">
+        <EntitySet Name="Materials" EntityType="cap.srv.order.OrderService.Materials"/>
         <EntitySet Name="OrderPositions" EntityType="cap.srv.order.OrderService.OrderPositions">
-          <NavigationPropertyBinding Path="parent" Target="Orders"/>
+          <NavigationPropertyBinding Path="order" Target="Orders"/>
+          <NavigationPropertyBinding Path="material" Target="Materials"/>
           <NavigationPropertyBinding Path="SiblingEntity" Target="OrderPositions"/>
         </EntitySet>
         <EntitySet Name="Orders" EntityType="cap.srv.order.OrderService.Orders">
-          <NavigationPropertyBinding Path="orderPositions" Target="OrderPositions"/>
+          <NavigationPropertyBinding Path="positions" Target="OrderPositions"/>
           <NavigationPropertyBinding Path="SiblingEntity" Target="Orders"/>
         </EntitySet>
       </EntityContainer>
@@ -34,18 +36,28 @@
         <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
         <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
       </EntityType>
+      <EntityType Name="Materials">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="50"/>
+      </EntityType>
       <EntityType Name="OrderPositions">
         <Key>
           <PropertyRef Name="ID"/>
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
-        <Property Name="position" Type="Edm.String" MaxLength="40"/>
-        <NavigationProperty Name="parent" Type="cap.srv.order.OrderService.Orders" Partner="orderPositions">
-          <ReferentialConstraint Property="parent_ID" ReferencedProperty="ID"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="position" Type="Edm.Int32"/>
+        <NavigationProperty Name="order" Type="cap.srv.order.OrderService.Orders" Partner="positions">
+          <ReferentialConstraint Property="order_ID" ReferencedProperty="ID"/>
         </NavigationProperty>
-        <Property Name="parent_ID" Type="Edm.Int32"/>
-        <Property Name="material_ID" Type="Edm.Int32"/>
+        <NavigationProperty Name="material" Type="cap.srv.order.OrderService.Materials">
+          <ReferentialConstraint Property="material_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="order_ID" Type="Edm.Guid"/>
+        <Property Name="material_ID" Type="Edm.Guid"/>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false"/>
         <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false"/>
@@ -57,9 +69,9 @@
           <PropertyRef Name="ID"/>
           <PropertyRef Name="IsActiveEntity"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="name" Type="Edm.String" MaxLength="40"/>
-        <NavigationProperty Name="orderPositions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="parent">
+        <NavigationProperty Name="positions" Type="Collection(cap.srv.order.OrderService.OrderPositions)" Partner="order">
           <OnDelete Action="Cascade"/>
         </NavigationProperty>
         <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false"/>
@@ -136,69 +148,6 @@
       <Annotations Target="cap.srv.order.OrderService.OrderPositions/DraftAdministrativeData">
         <Annotation Term="UI.Hidden" Bool="true"/>
       </Annotations>
-      <Annotations Target="cap.srv.order.OrderService.Orders">
-        <Annotation Term="Common.SemanticKey">
-          <Collection>
-            <PropertyPath>ID</PropertyPath>
-          </Collection>
-        </Annotation>
-        <Annotation Term="UI.Facets">
-          <Collection>
-            <Record Type="UI.ReferenceFacet">
-              <PropertyValue Property="ID" String="GeneralInformation"/>
-              <PropertyValue Property="Label" String="General Information"/>
-              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInfo"/>
-            </Record>
-          </Collection>
-        </Annotation>
-        <Annotation Term="UI.FieldGroup" Qualifier="GeneralInfo">
-          <Record Type="UI.FieldGroupType">
-            <PropertyValue Property="Data">
-              <Collection>
-                <Record Type="UI.DataField">
-                  <PropertyValue Property="Value" Path="ID"/>
-                </Record>
-                <Record Type="UI.DataField">
-                  <PropertyValue Property="Value" Path="name"/>
-                </Record>
-              </Collection>
-            </PropertyValue>
-          </Record>
-        </Annotation>
-        <Annotation Term="UI.HeaderInfo">
-          <Record Type="UI.HeaderInfoType">
-            <PropertyValue Property="TypeName" String="Order"/>
-            <PropertyValue Property="TypeNamePlural" String="Orders"/>
-          </Record>
-        </Annotation>
-        <Annotation Term="UI.LineItem">
-          <Collection>
-            <Record Type="UI.DataField">
-              <PropertyValue Property="Value" Path="ID"/>
-            </Record>
-            <Record Type="UI.DataField">
-              <PropertyValue Property="Value" Path="name"/>
-            </Record>
-          </Collection>
-        </Annotation>
-        <Annotation Term="UI.PresentationVariant">
-          <Record Type="UI.PresentationVariantType">
-            <PropertyValue Property="SortOrder">
-              <Collection>
-                <Record Type="Common.SortOrderType">
-                  <PropertyValue Property="Property" PropertyPath="ID"/>
-                  <PropertyValue Property="Ascending" Bool="true"/>
-                </Record>
-              </Collection>
-            </PropertyValue>
-            <PropertyValue Property="Visualizations">
-              <Collection>
-                <AnnotationPath>@UI.LineItem</AnnotationPath>
-              </Collection>
-            </PropertyValue>
-          </Record>
-        </Annotation>
-      </Annotations>
       <Annotations Target="cap.srv.order.OrderService.EntityContainer/Orders">
         <Annotation Term="Common.DraftRoot">
           <Record Type="Common.DraftRootType">
@@ -207,9 +156,6 @@
             <PropertyValue Property="PreparationAction" String="cap.srv.order.OrderService.draftPrepare"/>
           </Record>
         </Annotation>
-      </Annotations>
-      <Annotations Target="cap.srv.order.OrderService.Orders/ID">
-        <Annotation Term="Common.Label" String="Order ID"/>
       </Annotations>
       <Annotations Target="cap.srv.order.OrderService.Orders/IsActiveEntity">
         <Annotation Term="UI.Hidden" Bool="true"/>
