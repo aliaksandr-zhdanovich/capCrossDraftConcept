@@ -1,4 +1,4 @@
 namespace cap.db;
 
-using from './cds/index';
+using from './cds/model';
 

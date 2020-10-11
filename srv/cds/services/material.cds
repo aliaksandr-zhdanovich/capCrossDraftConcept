@@ -4,8 +4,9 @@ using cap.db as db from '../../../db/index';
 
 service MaterialService {
 
+    @odata.draft.enabled
     entity Materials as
-        select from db.material.Materials {
+        select from db.Materials {
             *
         }
 }

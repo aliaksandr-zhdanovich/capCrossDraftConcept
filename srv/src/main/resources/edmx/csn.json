@@ -1,82 +1,47 @@
 {
   "namespace": "cap.db",
   "definitions": {
-    "cap.db.material.Materials": {
+    "cap.db.Materials": {
       "kind": "entity",
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer"
+          "type": "cds.UUID"
         },
-        "material": {
+        "name": {
           "type": "cds.String",
           "length": 50
         }
       }
     },
-    "cap.db.order.Orders": {
+    "cap.db.OrderPositions": {
       "kind": "entity",
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer"
-        },
-        "name": {
-          "type": "cds.String",
-          "length": 40
-        },
-        "orderPositions": {
-          "type": "cds.Composition",
-          "cardinality": {
-            "max": "*"
-          },
-          "target": "cap.db.order_position.OrderPositions",
-          "on": [
-            {
-              "ref": [
-                "orderPositions",
-                "parent"
-              ]
-            },
-            "=",
-            {
-              "ref": [
-                "$self"
-              ]
-            }
-          ]
-        }
-      }
-    },
-    "cap.db.order_position.OrderPositions": {
-      "kind": "entity",
-      "elements": {
-        "ID": {
-          "key": true,
-          "type": "cds.Integer"
+          "type": "cds.UUID"
         },
         "position": {
-          "type": "cds.String",
-          "length": 40
+          "type": "cds.Integer"
         },
-        "parent": {
+        "order": {
           "type": "cds.Association",
           "cardinality": {
             "max": 1
           },
-          "target": "cap.db.order.Orders",
+          "target": "cap.db.Orders",
           "keys": [
             {
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "parent_ID"
+              "$generatedFieldName": "order_ID"
             }
           ]
         },
         "material": {
           "type": "cds.Association",
-          "target": "cap.db.material.Materials",
+          "target": "cap.db.Materials",
           "keys": [
             {
               "ref": [
@@ -86,13 +51,47 @@
             }
           ]
         },
-        "parent_ID": {
-          "type": "cds.Integer",
-          "@odata.foreignKey4": "parent"
+        "order_ID": {
+          "type": "cds.UUID",
+          "@odata.foreignKey4": "order"
         },
         "material_ID": {
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@odata.foreignKey4": "material"
+        }
+      }
+    },
+    "cap.db.Orders": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "positions": {
+          "type": "cds.Composition",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "cap.db.OrderPositions",
+          "on": [
+            {
+              "ref": [
+                "positions",
+                "order"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "$self"
+              ]
+            }
+          ]
         }
       }
     },
@@ -107,7 +106,7 @@
         "SELECT": {
           "from": {
             "ref": [
-              "cap.db.material.Materials"
+              "cap.db.Materials"
             ]
           },
           "columns": [
@@ -118,9 +117,9 @@
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer"
+          "type": "cds.UUID"
         },
-        "material": {
+        "name": {
           "type": "cds.String",
           "length": 50
         },
@@ -245,13 +244,13 @@
       "@source": "srv/cds/services/order.cds",
       "kind": "service"
     },
-    "cap.srv.order.OrderService.OrderPositions": {
+    "cap.srv.order.OrderService.Materials": {
       "kind": "entity",
       "query": {
         "SELECT": {
           "from": {
             "ref": [
-              "cap.db.order_position.OrderPositions"
+              "cap.db.Materials"
             ]
           },
           "columns": [
@@ -262,13 +261,38 @@
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer"
+          "type": "cds.UUID"
+        },
+        "name": {
+          "type": "cds.String",
+          "length": 50
+        }
+      },
+      "$syntax": "entity"
+    },
+    "cap.srv.order.OrderService.OrderPositions": {
+      "kind": "entity",
+      "query": {
+        "SELECT": {
+          "from": {
+            "ref": [
+              "cap.db.OrderPositions"
+            ]
+          },
+          "columns": [
+            "*"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.UUID"
         },
         "position": {
-          "type": "cds.String",
-          "length": 40
+          "type": "cds.Integer"
         },
-        "parent": {
+        "order": {
           "type": "cds.Association",
           "cardinality": {
             "max": 1
@@ -279,13 +303,13 @@
               "ref": [
                 "ID"
               ],
-              "$generatedFieldName": "parent_ID"
+              "$generatedFieldName": "order_ID"
             }
           ]
         },
         "material": {
           "type": "cds.Association",
-          "target": "cap.db.material.Materials",
+          "target": "cap.srv.order.OrderService.Materials",
           "keys": [
             {
               "ref": [
@@ -295,12 +319,12 @@
             }
           ]
         },
-        "parent_ID": {
-          "type": "cds.Integer",
-          "@odata.foreignKey4": "parent"
+        "order_ID": {
+          "type": "cds.UUID",
+          "@odata.foreignKey4": "order"
         },
         "material_ID": {
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@odata.foreignKey4": "material"
         },
         "IsActiveEntity": {
@@ -403,64 +427,12 @@
     },
     "cap.srv.order.OrderService.Orders": {
       "kind": "entity",
-      "@Common.SemanticKey": [
-        {
-          "=": "ID"
-        }
-      ],
-      "@UI.Facets": [
-        {
-          "$Type": "UI.ReferenceFacet",
-          "ID": "GeneralInformation",
-          "Label": "General Information",
-          "Target": "@UI.FieldGroup#GeneralInfo"
-        }
-      ],
-      "@UI.FieldGroup#GeneralInfo.Data": [
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "ID"
-          }
-        },
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "name"
-          }
-        }
-      ],
-      "@UI.HeaderInfo.TypeName": "Order",
-      "@UI.HeaderInfo.TypeNamePlural": "Orders",
-      "@UI.LineItem": [
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "ID"
-          }
-        },
-        {
-          "$Type": "UI.DataField",
-          "Value": {
-            "=": "name"
-          }
-        }
-      ],
-      "@UI.PresentationVariant.SortOrder": [
-        {
-          "Property": "ID",
-          "Ascending": true
-        }
-      ],
-      "@UI.PresentationVariant.Visualizations": [
-        "@UI.LineItem"
-      ],
       "@odata.draft.enabled": true,
       "query": {
         "SELECT": {
           "from": {
             "ref": [
-              "cap.db.order.Orders"
+              "cap.db.Orders"
             ]
           },
           "columns": [
@@ -471,14 +443,13 @@
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer",
-          "@Common.Label": "Order ID"
+          "type": "cds.UUID"
         },
         "name": {
           "type": "cds.String",
           "length": 40
         },
-        "orderPositions": {
+        "positions": {
           "type": "cds.Composition",
           "cardinality": {
             "max": "*"
@@ -487,8 +458,8 @@
           "on": [
             {
               "ref": [
-                "orderPositions",
-                "parent"
+                "positions",
+                "order"
               ]
             },
             "=",
